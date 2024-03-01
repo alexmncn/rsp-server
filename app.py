@@ -1,6 +1,5 @@
 from flask import Flask, request, render_template, redirect, url_for, flash, jsonify
 import subprocess
-from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Table, Column, Integer, String, MetaData, desc
 from flask_migrate import Migrate
@@ -15,14 +14,19 @@ import time
 from datetime import datetime
 import logging
 
-#importamos funciones .py
+#importamos funciones
 import funciones, send_notis, ip_nmap_scan
+
+#importamos configuracion
+from config import Config, SQL_Alchemy, S_Routes
+
 
 app = Flask(__name__)
 
 
 #config
 app.config.from_object(Config)
+app.config.from_object(SQL_Alchemy)
 
 
 #login control
@@ -234,7 +238,7 @@ def pc_on_esp32():
 
 
 ##unsecured pc-on (automation) // DESHUSO
-#@app.route(Config.UNSECURED_PC_ON_ROUTE, methods=['GET', 'POST'])
+#@app.route(S_Routes.PC_ON, methods=['GET', 'POST'])
 def unsecured_pc_on():
     comando = 'sudo python /var/www/html/scripts/pc-on.py'
     resultado = funciones.ejecutar_script(comando)
@@ -247,7 +251,7 @@ def unsecured_pc_on():
 
 
 ##unsecured_pc_on con esp32 // ACTIVA
-@app.route(Config.UNSECURED_PC_ON_ROUTE, methods=['GET', 'POST'])
+@app.route(S_Routes.PC_ON, methods=['GET', 'POST'])
 def unsecured_pc_on_esp32():
     resultado = funciones.pc_on_esp32()
     flash(resultado)

@@ -1,7 +1,7 @@
 from sqlalchemy import Table, Column, Integer, String, create_engine, MetaData, select, desc
-from config import Config
+from config import SQL_Alchemy
 
-database_uri = Config.SQLALCHEMY_DATABASE_URI
+database_uri = SQL_Alchemy.SQLALCHEMY_DATABASE_URI
 
 # Crear una conexión al a base de datos
 engine = create_engine(database_uri)

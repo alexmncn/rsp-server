@@ -1,11 +1,11 @@
 #send_notis.py
 import http.client, urllib
-from config import Config
+from config import Pushover
 #import pushover
 #import requests
 
-APP_TOKEN = Config.APP_TOKEN
-USER_KEY = Config.USER_KEY
+APP_TOKEN = Pushover.APP_TOKEN
+USER_KEY = Pushover.USER_KEY
 
 
 def send_noti(MESSAGE, username):

@@ -108,7 +108,7 @@ footer {
 }
 
 /* Estilos para el botón adminer */
-input[value="PELIS Y SERIES"],
+input[value="CINE"],
 input[value="PANEL PRIVADO"],
 input[value="BASE DE DATOS"] {
   background-color: #CF262C; /* Cambia el color de fondo del botón */
