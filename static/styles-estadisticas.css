@@ -1,0 +1,211 @@
+/* Estilos generales */
+body {
+  font-family: monospace;
+  margin: 0;
+  padding: 0;
+  background-color: #0C0910;
+  color: #B8B8D1;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  margin-bottom:30;
+  
+}
+
+/* Banner */
+.banner {
+  background-color: #101019;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-info {
+  display: flex;
+  margin: 15px;
+  align-items: center;
+}
+
+/*p texto banner loged*/
+p {
+  font-size: 14px;
+  margin: 15px;
+}
+
+/* Estilos para el enlace de cierre de sesión */
+.logout-link {
+  display: none; /* Inicialmente, oculta el enlace de cierre de sesión */
+  margin: 15px;
+  color: #B8B8D1;
+  text-decoration: none;
+  background-color: #202031;
+  font-weight: bold;
+  padding: 5px 10px;
+  justify-content: space-around;
+}
+
+/* Mostrar el enlace de cierre de sesión cuando se pasa el ratón por encima de <p> */
+.user-info:hover .logout-link {
+  display: flex; /* Muestra el enlace de cierre de sesión al pasar el ratón por encima de <p> */
+}
+
+.user-info p:focus + .logout-link {
+  display: flex;
+}
+
+.botones-banner {
+  display: flex;  
+  margin: 15px;
+}
+
+/* Estilos para el botón login */
+input[value="Iniciar Sesión"],
+input[value="Registrarse"] {
+  background-color: #CF262C;
+  color: white;
+  padding: 10px 20px;
+  width: 150px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap; /* Evita que el texto se desborde */
+  margin: 15px;
+}
+
+input[value="Iniciar Sesión"]:hover,
+input[value="Registrarse"]:hover {     
+  background-color: #DC4147;
+}
+
+/* Estilos para el encabezado */
+h1 {
+  font-size: 30px;
+  color: #B8B8D1; /* Cambia el color del texto del encabezado */
+  margin: 30px;
+}
+
+/*Contenido de la pagina, margen para evitar el header*/
+main {
+  margin-top: 96px; /* Ajusta según la altura de tu encabezado */
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* Coloca los elementos en una columna vertical */
+  justify-content: center; /* Centra verticalmente los elementos */
+  align-items: center; /* Centra horizontalmente los elementos */  
+  margin-top: 50px;
+  text-align: center;
+}
+
+h2 {
+  letter-spacing: 2px;
+}
+
+h3 {
+  margin-left: 12.5%;
+  color: #616683;
+}
+
+.table3-4 {
+  display: flex;
+  width: 85.5%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.table3,
+.table4 {
+  flex: 1;
+}
+
+.table5,
+.table6 {
+  width: 100%;
+  text-align: left;
+}
+
+/*TABLAS*/
+/* Estilos para la tabla */
+table {
+  width: 75%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #202031;
+  color: #B8B8D1;
+}
+
+/* Estilos para las celdas de encabezado */
+th {
+  background-color: #101019;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Estilos para las celdas de datos */
+td {
+  padding: 8px;
+  border-bottom: 1px solid #616283;
+}
+
+/* Estilo para el borde de la tabla */
+table, th, td {
+  border: 1px solid #616283;
+}
+
+/* Estilos para el botón login */
+#scanButton {
+  background-color: #CF262C;
+  color: white;
+  padding: 10px 20px;
+  width: 150px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap; /* Evita que el texto se desborde */
+  margin: 15px;
+}
+
+#scanButton:hover {
+  background-color: #DC4147;
+}
+/*tablas*/
+
+
+
+/* Estilos para el pie de página */
+footer {
+  text-align: center;
+  padding: 10px 0;
+  color: #616283; /* Cambia el color del texto del pie de página */
+  position: fixed; /* Fija el pie de página */
+  bottom: 0; /* Lo coloca en la parte inferior */
+  width: 100%; /* Ancho completo */
+  font-size: 13px;
+}
+
+.resultado {
+  margin: 10px;
+  font-weight: bold;
+}
+
+
+.error {
+  margin-top: 20px;
+  color: #B8B8D1;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centra horizontalmente los elementos */
+}
+

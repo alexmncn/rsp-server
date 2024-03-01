@@ -1,0 +1,136 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Bienvenido - AMC web</title>
+  <meta name="viewport" content="width=device-width, initial-scale=0.7">
+  <link rel="icon" href="{{ url_for('static', filename='penguin.ico') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles-estadisticas.css') }}">
+</head>
+<body>
+
+  <main>
+  <div class="container">
+    <h2>PISO</h2>
+    
+    <table border="1" id="tabla-piso">
+      <thead>
+          <tr>
+              <th>Dispositivo</th>
+              <th class="columnaIP">IP</th>
+              <th class="columnaSTATUS">STATUS</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr data-id="miquel">
+              <td class="columnaDispositivo">Miquel</td>
+              <td class="columnaIP">192.168.1.23</td>
+              <td class="columnaSTATUS">STATUS Miquel</td>
+          </tr>
+          <tr data-id="noe">
+              <td class="columnaDispositivo">Noe</td>
+              <td class="columnaIP">192.168.1.30</td>
+              <td class="columnaSTATUS">STATUS Noe</td>
+          </tr>
+          <tr data-id="iphone">
+              <td class="columnaDispositivo">Yo</td>
+              <td class="columnaIP">192.168.1.65</td>
+              <td class="columnaSTATUS">STATUS Yo</td>
+          </tr>
+      </tbody>
+    </table>
+    
+    <button id="scanButton">Escanear Red</button>
+
+    <table border="1" id="scanTable">
+      <thead>
+        <tr>
+            <th>Host</th>
+            <th>IP</th>
+            <th>STATUS</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="container">
+    <h2>MI HABITACION</h2>
+
+    <div class="table3-4">
+      <div class="table3">
+        <h3>SERVER - Raspberry</h3>
+        <table border="1" id="tabla3-rsp">
+          <tbody>
+            <tr data-id="temp">
+              <td>Temp ºC</td>
+              <td class="status-data">No data</td>
+            </tr>
+          </tbody> 
+        </table>
+      </div>
+
+      <div class="table4">
+        <h3>PC - Principal</h3>
+        <table border="1" id="tabla4-pc">
+          <tbody>
+            <tr data-id="pc-status">
+              <td>Estado</td>
+              <td class="status-data">No data</td>
+            </tr>
+          </tbody>
+
+
+        </table>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>PAGINA WEB</h2>
+
+    <div class="table5">
+    <h3>ULTIMOS ACCESOS</h3>
+    <table border="1" id="sqlTable1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Host</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+    </div>
+
+    <div class="table6">
+    <h3>RESUMEN DEL ULTIMO DÍA</h3>
+    <table border="1" id="sqlTable2">
+      <thead>
+        <tr>
+          <th>Nº Accesos</th>
+          <th>Host</th>
+          <th>Fecha último acceso</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+    </div>
+  </div>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="{{ url_for('static', filename='js-scripts/status.js') }}"></script>
+  <script src="{{ url_for('static', filename='js-scripts/scan.js') }}"></script>
+  <script src="{{ url_for('static', filename='js-scripts/status_t3.js') }}"></script>
+  <script src="{{ url_for('static', filename='js-scripts/status_t4.js') }}"></script>
+  <script src="{{ url_for('static', filename='js-scripts/sql_last_10_ips.js') }}"></script>
+  <script src="{{ url_for('static', filename='js-scripts/sql_most_accesses_by_ip.js') }}"></script>
+</body>
+</html>

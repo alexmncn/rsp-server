@@ -1,0 +1,113 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Gestionar Credenciales - AMC web</title>
+  <meta name="viewport" content="width=device-width, initial-scale=0.7">
+  <link rel="icon" href="{{ url_for('static', filename='penguin.ico') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles-gestionar-credenciales.css') }}">
+</head>
+<body>
+
+  <main>
+    <div class="botones">
+      <button id="mostrar-nueva" class="select">Nueva</button>
+      <button id="mostrar-guardadas">Guardadas</button>
+    </div>
+    <div class="nueva">
+        <h2>Añadir Nueva Crendencial</h2>
+        
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.site(class="form-control", placeholder="Sitio Web") }}
+            {{ form.user(class="form-control", placeholder="Usuario") }}
+            {{ form.email(class="form-control", placeholder="Correo Electrónico") }}
+            {{ form.password(class="form-control", placeholder="Contraseña") }}
+            {{ form.description(class="form-control", placeholder="Descripción") }}
+          <input type="submit" value="Guardar">
+        </form>
+    </div>
+      
+    <div class="guardadas ocultar">
+
+      <button id="cargar">Cargar Credenciales</button>
+      
+      <div class="table_cred">
+      <table id="credenciales">
+        <thead>
+          <tr>
+            <th>Sitio Web</th>
+            <th>Usuario</th>
+            <th>Email</th>
+            <th>Contraseña</th>
+            <th>Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+      </div>
+    </div>
+    
+    <div class="error">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('mostrar-nueva').addEventListener('click', function () {
+      var botonNueva = document.querySelector('.botones #mostrar-nueva');
+      var botonGuardadas = document.querySelector('.botones #mostrar-guardadas');
+  
+      if (!botonNueva.classList.contains('select')) {
+        botonNueva.classList.add('select');
+        if (botonGuardadas.classList.contains('select')) {
+          botonGuardadas.classList.remove('select');
+        }
+      }
+
+      var divNueva = document.querySelector('.nueva');
+      var divGuardadas = document.querySelector('.guardadas');
+
+      if(divNueva.classList.contains('ocultar')){
+        divNueva.classList.remove('ocultar');
+        if(!divGuardadas.classList.contains('ocultar')){
+          divGuardadas.classList.add('ocultar');
+        }
+      }
+    });
+
+    document.getElementById('mostrar-guardadas').addEventListener('click', function () {
+      var botonNueva = document.querySelector('.botones #mostrar-nueva');
+      var botonGuardadas = document.querySelector('.botones #mostrar-guardadas');
+  
+      if (!botonGuardadas.classList.contains('select')) {
+        botonGuardadas.classList.add('select');
+        if (botonNueva.classList.contains('select')) {
+          botonNueva.classList.remove('select');
+        }
+      }
+
+      var divNueva = document.querySelector('.nueva');
+      var divGuardadas = document.querySelector('.guardadas');
+
+      if(divGuardadas.classList.contains('ocultar')){
+        divGuardadas.classList.remove('ocultar');
+        if(!divNueva.classList.contains('ocultar')){
+          divNueva.classList.add('ocultar');
+        }
+      }
+    });
+  </script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="{{ url_for('static', filename='js-scripts/cg_creds.js') }}"></script>
+</body>
+</html>

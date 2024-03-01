@@ -1,0 +1,146 @@
+body {
+  font-family: monospace;
+  margin: 0;
+  padding: 0;
+  background-color: #0C0910;
+  color: #B8B8D1;
+}
+
+.menu {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.menu button {
+  background-color: #101019;
+  color: #B8B8D1;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  /*margin-bottom: 13px;*/
+}
+
+.menu button:hover {
+  color: #DC4147;
+}
+
+
+.list-menu {
+    display: flex;
+    justify-content: space-around;
+    background-color: #101019;
+}
+
+.list-menu ul.mostrar {
+  display: block !important; /* Muestra la lista al agregar la clase "mostrar" */
+}
+
+.list-menu ul {
+  display: none; /* Inicialmente, oculta la lista del menú */
+  list-style: none;
+  padding: 0;
+}
+
+.list-menu li {
+  margin-bottom: 10px;
+}
+
+.list-menu a {
+  color: #B8B8D1;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.list-menu a:hover {
+  color: #DC4147;
+}
+
+.contenido {
+  display: flex;
+  padding: 20px;
+  height: 94vh;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.banner {
+  background-color: #101019;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  positon: relative;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.user-info p {
+  font-size: 14px;
+  margin: 0 15px;
+}
+
+.logout-link {
+  display: none;
+  margin: 0 15px;
+  color: #B8B8D1;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 10px;
+  background-color: #202031;
+}
+
+.logout-link:hover {
+  background-color: #DC4147;
+  color: #fff;
+} 
+
+.user-info:hover .logout-link,
+.user-info p:focus + .logout-link {
+  display: flex;
+}
+
+.botones-banner {
+  display: flex;
+  margin: 0 15px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+h1 {
+  font-size: 30px;
+  color: #B8B8D1;
+  margin: 30px;
+}
+
+.banner a{
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  padding: 10px 0;
+  color: #616283;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 13px;
+}
+

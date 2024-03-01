@@ -1,0 +1,183 @@
+body {
+  font-family: monospace;
+  margin: 0;
+  padding: 0;
+  background-color: #0C0910;
+  /*background: linear-gradient(45deg, #8359d4, #6753a8, #4376c8, #3a579b); /* Colores para el difuminado */
+  color: #B8B8D1;
+}
+
+main {
+  margin-top: 96px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.botones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 13px;
+}
+
+.botones button {
+  background-color: #101019;
+  color: #B8B8D1;
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.botones button.select {
+  background-color: #CF262C;
+  color: #fff;
+  transform: scale(1.15);
+  margin: 0 6px;
+}
+
+.ocultar {
+  display: none !important;
+}
+
+
+h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-top: 15px;
+  color: #0C0910;
+}
+
+@media(max-width: 600px) {
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #0C0910;
+  }
+}
+
+/*---- Sección 'nueva' ----*/
+.nueva {
+  display: block;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  color: white;
+  border-radius: 5px;
+  box-shadow: 20px 19px 13px 4px rgb(0 0 0 / 20%);
+  margin-top: 100px;
+  width: 50%;
+  max-width: 780px;
+}
+
+/* Estilos para los formularios y campos de entrada */
+.nueva form input {
+  font-weight: bold;
+  font-size: 15px;
+  color: black;
+  width: 90%;
+  height: 15%;
+  margin: 15px 0;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 9px 10px 14px 2px rgb(0 0 0 / 20%);
+}
+
+.nueva form input[type="submit"]{
+  background-color: #0C0910;
+  color: white;
+  margin-top: 30px;
+  padding: 15px 30px;
+  border: none;
+  cursor: crosshair;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.6s;
+  transition: transform 1s ease;
+}
+
+.nueva form input[type="submit"]:hover {
+  background-color: #101019;
+  transform: scale(1.05);
+
+}
+
+/*---- Sección 'guardadas' ----*/
+.guardadas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  width: 100%;
+}
+
+/* Estilos para el botón login */
+#cargar {
+  background-color: #CF262C;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  transition: transform 1s ease;
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap; /* Evita que el texto se desborde */
+  margin: 15px;
+}
+
+#cargar:hover {
+  background-color: #DC4147;
+  transform: scale(1.05)
+}
+
+/*TABLAS*/
+/* Estilos para la tabla */
+.table_cred {
+  width: 100%;
+}
+
+
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #101019;
+  font-weight: bold;
+  font-size: 13px;
+  border-radius: 10px;
+  width: 50%;
+}
+
+/* Estilos para las celdas de encabezado */
+th {
+  background-color: #101019;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Estilo para el borde de la tabla */
+table, th, td {
+  border: 1px solid transparent;
+  padding: 10px;
+  border-radius: 10px;
+  border-collapse: separate;
+}
+
+/*---- errores ----*/
+.error {
+  margin-top: 20px;
+  color: #B8B8D1;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
