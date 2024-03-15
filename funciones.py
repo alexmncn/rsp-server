@@ -7,6 +7,7 @@ from sqlalchemy import desc, func
 import json
 from datetime import datetime, timedelta
 from PIL import Image, ImageDraw, ImageFont
+from config import ESP32
 
 ip_pc_piso = '192.168.1.53' #IP piso
 ip_pc_casa = '192.168.0.12' #IP ip_pc_casa
@@ -41,7 +42,7 @@ def pc_on_esp32():
     octeto_3 = int(ip_local.split('.')[2]) #la 'ip_esp' ya esta definida al principio con f string para añadir el valor de 'octeto_3'
     ip_esp = f'192.168.{octeto_3}.100'
 
-    url_web_esp = f'http://{ip_esp}/on'
+    url_web_esp = f'http://{ip_esp}/control?secret_class={ESP32.ON_KEY}&on=ON'
 
     #comprobamos el estado del pc y procedemos según éste
     current_status = pc_status()
