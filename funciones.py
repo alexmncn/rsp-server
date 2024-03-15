@@ -11,9 +11,6 @@ from PIL import Image, ImageDraw, ImageFont
 ip_pc_piso = '192.168.1.53' #IP piso
 ip_pc_casa = '192.168.0.12' #IP ip_pc_casa
 
-octeto_3 = 0
-ip_esp = f'192.168.{octeto_3}.100'
-
 #estado dispositivos
 def check_device_connection(ip_address):
     try:
@@ -42,9 +39,10 @@ def pc_on_esp32():
     #Obtenemos la ip local y comprobamos el 3 octeto para verificar que red estamos
     ip_local = get_local_ip()
     octeto_3 = int(ip_local.split('.')[2]) #la 'ip_esp' ya esta definida al principio con f string para añadir el valor de 'octeto_3'
+    ip_esp = f'192.168.{octeto_3}.100'
 
     url_web_esp = f'http://{ip_esp}/on'
-    
+
     #comprobamos el estado del pc y procedemos según éste
     current_status = pc_status()
 
