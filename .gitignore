@@ -1,6 +1,6 @@
 config.py
 logs/
-NvimTree_1/
+NvimTree_1
 __pycache__/
 migrations/
 scripts/
