@@ -345,7 +345,7 @@ class CredentialsForm(FlaskForm):
 
 #panel privado
 @app.route('/panel-privado')
-@user_has_role('admin')
+@login_required
 def panel_privado():
     #enviamos notificación
     message = f"{current_user.username} ha accedido a Panel de Control."
