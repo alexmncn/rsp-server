@@ -2,7 +2,7 @@ body {
   font-family: monospace;
   margin: 0;
   padding: 0;
-  background-color: #0C0910;
+  /*background-color: #0C0910;
   /*background: linear-gradient(45deg, #8359d4, #6753a8, #4376c8, #3a579b); /* Colores para el difuminado */
   color: #B8B8D1;
 }

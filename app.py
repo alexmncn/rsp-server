@@ -172,7 +172,7 @@ def redirigir_a_practicas():
     #message = f"{current_user.username} ha accedido a Prácticas"
     #send_notis.send_noti(message. )
 
-    return redirect('/practica1_SAT')
+    return redirect('/practicas')
 
 
 # Movies WEB

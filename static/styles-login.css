@@ -3,7 +3,7 @@ body {
   font-family: monospace;
   margin: 0;
   padding: 0;
-  background-color: #0C0910;
+  /*background-color: #0C0910;*/
   color: #B8B8D1;
   display: flex;
   align-items: center;
