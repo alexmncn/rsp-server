@@ -2,7 +2,9 @@ body {
   font-family: monospace;
   margin: 0;
   padding: 0;
+  height: 100vh;
   background-color: #0C0910;
+  background: linear-gradient(45deg, #8359d4, #6753a8, #4376c8, #3a579b); /* Colores para el difuminado */
   color: #B8B8D1;
 }
 
@@ -123,11 +125,15 @@ header {
   margin-top: 30px;
 }
 
-h1 {
+.banner h1 {
   font-size: 30px;
   color: #B8B8D1;
   margin: 30px;
 }
+
+.banner h1:hover{
+  color: #DC4147;
+} 
 
 .banner a{
   text-decoration: none;

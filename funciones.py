@@ -81,7 +81,8 @@ def datos_status_tabla1():
 
 #obtener datos tabla 3 raspberry server
 def datos_status_tabla3():
-    rsp_temp = float(ejecutar_script('cat /sys/class/thermal/thermal_zone0/temp'))/1000
+    temp = int(ejecutar_script('cat /sys/class/thermal/thermal_zone0/temp'))/1000
+    rsp_temp = f'{temp} ºC'
 
     status_json = {
         'temp': {'data-id': 1, 'status-data': rsp_temp},

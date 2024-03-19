@@ -81,10 +81,14 @@ input[value="Registrarse"]:hover {
 }
 
 /* Estilos para el encabezado */
-h1 {
+.banner h1 {
   font-size: 30px;
   color: #B8B8D1; /* Cambia el color del texto del encabezado */
   margin: 30px;
+}
+
+.banner h1:hover{
+  color: #DC4147;
 }
 
 .container {

@@ -106,23 +106,28 @@ main {
 
 h2 {
   letter-spacing: 2px;
+  color: white;
 }
 
 h3 {
   margin-left: 12.5%;
-  color: #616683;
+  color: #101019;
+  font-weight: bold;
 }
 
 .table3-4 {
   display: flex;
-  width: 85.5%;
-  margin: 0 auto;
+  width: 86%;
   text-align: left;
+  align-items: center;
 }
 
 .table3,
 .table4 {
-  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
 }
 
 .table5,
@@ -132,13 +137,16 @@ h3 {
 }
 
 /*TABLAS*/
-/* Estilos para la tabla */
+/*Estilos tablas estadisticas*/
 table {
-  width: 75%;
   margin: 20px auto;
   border-collapse: collapse;
-  background-color: #202031;
-  color: #B8B8D1;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #101019;
+  font-weight: bold;
+  font-size: 13px;
+  border-radius: 10px;
+  width: 75%;
 }
 
 /* Estilos para las celdas de encabezado */
@@ -149,16 +157,25 @@ th {
   text-align: left;
 }
 
-/* Estilos para las celdas de datos */
-td {
-  padding: 8px;
-  border-bottom: 1px solid #616283;
-}
-
 /* Estilo para el borde de la tabla */
 table, th, td {
-  border: 1px solid #616283;
+  padding: 10px;
+  border-radius: 10px;
+  border-collapse: separate;
+  border: none;
 }
+
+
+/*---- errores ----*/
+.error {
+  margin-top: 20px;
+  color: #B8B8D1;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 
 /* Estilos para el botón login */
 #scanButton {
@@ -168,6 +185,7 @@ table, th, td {
   width: 150px;
   border: none;
   cursor: pointer;
+  border-radius: 10px;
   transition: background-color 0.3s;
   font-family: monospace;
   font-size: 12px;
@@ -179,7 +197,6 @@ table, th, td {
 #scanButton:hover {
   background-color: #DC4147;
 }
-/*tablas*/
 
 
 
