@@ -77,7 +77,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  positon: relative;
 }
 
 .user-info {
