@@ -6,6 +6,7 @@ body {
   background-color: #0C0910;
   color: #B8B8D1;
   letter-spacing: 1.5px;
+  font-size: 12px;
 }
 
 /* Banner */
@@ -151,7 +152,6 @@ input[value="ENCENDER PC"]:hover{
   background-color: #202031;
   text-decoration: none;    
   margin: 10px;
-  font-size: 12px;
   padding: 5px 10px; 
 }
 
