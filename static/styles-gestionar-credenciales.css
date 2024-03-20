@@ -1,5 +1,5 @@
 body {
-  font-family: monospace;
+  font-family: __geistSansFont_8289af, arial;
   margin: 0;
   padding: 0;
   /*background-color: #0C0910;
@@ -144,7 +144,50 @@ h2 {
   transform: scale(1.05)
 }
 
-/*TABLAS*/
+
+/*TARJETAS ---- DEMO ---- */
+.Credenciales{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  width: 85%;
+}
+
+.tarjeta-cred {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1000px;
+  flex: 1 1 400px;
+
+  background: rgba(0, 0, 0, 0.23);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5.1px);
+  -webkit-backdrop-filter: blur(5.1px);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  padding: 10px 25px;
+}
+
+.tarjeta-cred p {
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  text-wrap: wrap;
+}
+
+.tarjeta-cred .estatico{
+  margin-right: 20px;
+}
+
+.tarjeta-cred .dinamico p{
+  text-align: right;
+}
+/*----------------------------------------*/
+
+/*TABLA*/
 /* Estilos para la tabla */
 .table_cred {
   width: 100%;
