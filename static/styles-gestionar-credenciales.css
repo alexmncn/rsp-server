@@ -145,6 +145,12 @@ h2 {
 }
 
 
+/* Boton  mostrar ocultar contraseña */
+.switch-password {
+  cursor: pointer;
+}
+
+
 /*TARJETAS ---- DEMO ---- */
 .credenciales{
   display: flex;

@@ -14,7 +14,7 @@ $(document).ready(function() {
                   console.log(data);
                   data.forEach(function(credencial) {
                     if ((credencial.user === '') || (credencial.user === ' ')){
-                      credencial.user = '          ';
+                      credencial.user = '----------';
                     }
 
                     $('#credenciales').append(`
@@ -47,3 +47,15 @@ $(document).ready(function() {
         });
     });
 });
+
+function show_password() {
+  if (credenciales.classList.contains('ocultar')){
+    credenciales.classList.remove('ocultar');
+    sp_1.textContent = "visibility_off";
+  } else { 
+    credenciales.classList.add('ocultar');
+    sp_1.textContent = "visibility";
+  }
+
+
+}
