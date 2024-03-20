@@ -34,8 +34,6 @@ main {
 .botones button.select {
   background-color: #CF262C;
   color: #fff;
-  transform: scale(1.15);
-  margin: 0 6px;
 }
 
 .ocultar {
@@ -119,29 +117,30 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 25px;
   width: 100%;
 }
 
 /* Estilos para el botón login */
 #cargar {
-  background-color: #CF262C;
-  color: white;
-  padding: 10px 20px;
+  background-color: #0C0910;
+  color: #dedede;
+  padding: 13px 22px;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
   transition: transform 1s ease;
-  font-family: monospace;
   font-size: 12px;
   font-weight: bold;
   white-space: nowrap; /* Evita que el texto se desborde */
   margin: 15px;
+  letter-spacing: 2px;
+  border-radius: 10px;
 }
 
 #cargar:hover {
-  background-color: #DC4147;
-  transform: scale(1.05)
+  background-color: #0C0910;
+  transform: scale(1.025)
 }
 
 

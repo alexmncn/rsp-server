@@ -1,11 +1,12 @@
 body {
-  font-family: monospace;
+  font-family: __geistSansFont_8289af, arial;
   margin: 0;
   padding: 0;
   height: 100vh;
   background-color: #0C0910;
   background: linear-gradient(45deg, #8359d4, #6753a8, #4376c8, #3a579b); /* Colores para el difuminado */
   color: #B8B8D1;
+  letter-spacing: 1.5px;
 }
 
 .menu {
@@ -21,7 +22,6 @@ body {
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
-  /*margin-bottom: 13px;*/
 }
 
 .menu button:hover {
@@ -147,5 +147,6 @@ footer {
   bottom: 0;
   width: 100%;
   font-size: 13px;
+  letter-spacing: 0px;
 }
 
