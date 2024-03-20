@@ -7,21 +7,35 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(data) {
                 // Limpiar la tabla antes de agregar nuevos datos
-                $('#credenciales tbody').empty();
+                $('#credenciales').empty();
                 // Verificar si data está definido y es iterable
                 if (Array.isArray(data)) {
                   // Agregar datos escaneados a la tabla
-                  data.forEach(function(credenciales) {
-                      $('#credenciales tbody').append(
-                          `<tr>
-                              <td>${credenciales.site}</td>
-                              <td>${credenciales.user}</td>
-                              <td>${credenciales.email}</td>
-                              <td type="password">${credenciales.password}</td>
-                              <td>${credenciales.description}</td>
-                              
-                          </tr>`
-                      );
+                  console.log(data);
+                  data.forEach(function(credencial) {
+                    if ((credencial.user === '') || (credencial.user === ' ')){
+                      credencial.user = '          ';
+                    }
+
+                    $('#credenciales').append(`
+                        <div class="tarjeta-cred">
+                          <div class="estatico">
+                            <p>Sitio Web:</p>
+                            <p>Usuario:</p>
+                            <p>Email:</p>
+                            <p>Contraseña:</p>
+                            <p>Descripción:</p>
+                          </div>
+
+                          <div class="dinamico">
+                            <p>${credencial.site}</p>
+                            <p>${credencial.user}</p>
+                            <p>${credencial.email}</p>
+                            <p>${credencial.password}</p>
+                            <p>${credencial.description}</p>
+                          </div>
+                        </div>
+                      `);
                   });
                 } else {
                   console.error('Error: Datos no válidos recibidos del servidor.');
