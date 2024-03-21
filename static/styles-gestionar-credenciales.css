@@ -1,5 +1,4 @@
 body {
-  font-family: __geistSansFont_8289af, arial;
   margin: 0;
   padding: 0;
   /*background-color: #0C0910;
@@ -29,6 +28,8 @@ main {
   font-size: 16px;
   font-weight: bold;
   padding: 10px;
+  font-family: inherit;
+  font-weight: lighter;
 }
 
 .botones button.select {
@@ -71,6 +72,7 @@ h2 {
   margin-top: 100px;
   width: 50%;
   max-width: 780px;
+  font-family: inherit;
 }
 
 @media(max-width: 600px){
@@ -91,6 +93,7 @@ h2 {
   border: none;
   border-radius: 5px;
   box-shadow: 9px 10px 14px 2px rgb(0 0 0 / 20%);
+  font-family: inherit;
 }
 
 .nueva form input[type="submit"]{
@@ -136,6 +139,7 @@ h2 {
   margin: 15px;
   letter-spacing: 2px;
   border-radius: 10px;
+  font-family: inherit;
 }
 
 #cargar:hover {
@@ -165,6 +169,7 @@ h2 {
   flex-wrap: wrap;
   gap: 25px;
   width: 85%;
+  margin-top: 20px;
 }
 
 .tarjeta-cred {

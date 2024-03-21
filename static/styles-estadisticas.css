@@ -1,6 +1,5 @@
 /* Estilos generales */
 body {
-  font-family: monospace;
   margin: 0;
   padding: 0;
   /*background-color: #0C0910;*/
@@ -187,7 +186,7 @@ table, th, td {
   cursor: pointer;
   border-radius: 10px;
   transition: background-color 0.3s;
-  font-family: monospace;
+  font-family: inherit;
   font-size: 12px;
   font-weight: bold;
   white-space: nowrap; /* Evita que el texto se desborde */

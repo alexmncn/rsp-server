@@ -1,6 +1,5 @@
 /* Estilos generales */
 body {
-  font-family: monospace;
   margin: 0;
   padding: 0;
   background-color: #0C0910;
@@ -31,7 +30,6 @@ body {
 /* Estilos para los formularios y campos de entrada */
 .container form label {
   display: block;
-  font-weight: bold;
   color: white;
   margin-top: 10px;
 }
@@ -43,7 +41,7 @@ body {
   margin: 10px 0;
   border: none;
   border-radius: 5px;
-  font-family: monospace;
+  font-family: inherit;
 }
 
 .container form input[type="submit"] {
@@ -52,12 +50,12 @@ body {
   padding: 15px 30px;
   border: none;
   cursor: pointer;
-  font-family: monospace;
   font-size: 18px;
-  font-weight: bold;
   transition: background 0.3s;
   display: block;
   margin: 10px auto;
+  border-radius: 10px;
+  font-family: inherit;
 }
 
 .container form input[type="submit"]:hover {

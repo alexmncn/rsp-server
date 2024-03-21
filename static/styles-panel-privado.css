@@ -1,5 +1,4 @@
 body {
-  font-family: __geistSansFont_8289af, arial;
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -85,6 +84,7 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin: 15px;
 }
 
 .user-info p {
@@ -137,6 +137,7 @@ header {
 
 .banner a{
   text-decoration: none;
+  font-size: 12px;
 }
 
 footer {

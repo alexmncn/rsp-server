@@ -1,11 +1,9 @@
 /* Estilos generales */
 body {
-  font-family: __geistSansFont_8289af, arial;
   margin: 0;
   padding: 0;
   background-color: #0C0910;
   color: #B8B8D1;
-  letter-spacing: 1.5px;
   font-size: 12px;
 }
 
@@ -15,6 +13,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  letter-spacing: 1.5px;
 }
 
 .user-info {
@@ -74,6 +73,7 @@ input[value="Registrarse"] {
   white-space: nowrap; /* Evita que el texto se desborde */
   margin: 15px;
   border-radius: 10px;
+  font-family: inherit;
 }
 
 input[value="Iniciar Sesión"]:hover,
@@ -125,12 +125,13 @@ input[value="ENCENDER PC"]{
   transition: background-color 0.3s; /* Transición de color al pasar el cursor */
   display: block; /* Convierte el botón en un bloque para centrarlo */
   margin: 10px auto; /* Centra el botón horizontalmente y agrega separación entre ellos */
-  font-size: 15px; /* Aumenta el tamaño de fuente */
+  font-size: 13px; /* Aumenta el tamaño de fuente */
   width: 200px;
   white-space: nowrap;
   border-radius: 10px;
   letter-spacing: 1.5px;
   font-weight: bold;
+  font-family: inherit;
 }
 
 input[value="PELIS Y SERIES"]:hover,
