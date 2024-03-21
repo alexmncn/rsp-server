@@ -66,7 +66,7 @@ h2 {
   padding: 20px;
   background: rgba(255, 255, 255, 0.5);
   color: white;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: 20px 19px 13px 4px rgb(0 0 0 / 20%);
   margin-top: 100px;
   width: 50%;
@@ -145,8 +145,15 @@ h2 {
 
 
 /* Boton  mostrar ocultar contraseña */
-.switch-password {
+.switch-password-icon {
   cursor: pointer;
+  color: white;
+  margin-right: 15px;
+  transform: translateY(2px);
+  font-size: 20px !important;
+}
+
+.icon_visibility_off {
   color: #dedede;
 }
 
@@ -165,7 +172,7 @@ h2 {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  max-width: 400px;
+  max-width: 600px;
   flex: 1 1 400px;
 
   background: rgba(0, 0, 0, 0.23);
@@ -196,6 +203,18 @@ h2 {
   font-weight: normal;
   letter-spacing: 1.3;
 }
+
+.tarjeta-cred .password{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: right;
+}
+
+.tarjeta-cred .password p {
+  margin: 0;
+}
+
 /*----------------------------------------*/
 
 /*TABLA*/
