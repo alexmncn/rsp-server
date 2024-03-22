@@ -48,7 +48,7 @@ $(document).ready(function() {
                             <p>${credencial.email}</p>
                             <div class="password">
                               <span id="${icon_id}" class="material-symbols-outlined switch-password-icon" onclick="switch_password('${credencial.id}','${icon_id}','${p_id}')">visibility</span>
-                              <p id="${p_id}">${hide_password}</p>
+                              <p id="${p_id}" class="f_size_bullet_points">${hide_password}</p>
                             </div>
                             <p>${credencial.description}</p>
                           </div>
@@ -81,6 +81,7 @@ function switch_password(id, icon_id, p_id){
     });
 
     p.textContent = password;
+    p.classList.remove("f_size_bullet_points");
     icon.textContent = "visibility_off";
     icon.classList.add("icon_visibility_off");
   } else if (icon.textContent == "visibility_off") {
@@ -98,6 +99,7 @@ function switch_password(id, icon_id, p_id){
     }
       
     p.textContent = hide_password;
+    p.classList.add("f_size_bullet_points");
     icon.textContent = "visibility";
     icon.classList.remove("icon_visibility_off");
   }

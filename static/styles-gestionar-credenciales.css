@@ -153,7 +153,7 @@ h2 {
   cursor: pointer;
   color: white;
   margin-right: 15px;
-  transform: translateY(2px);
+  transform: translateY(1px);
   font-size: 20px !important;
 }
 
@@ -200,7 +200,7 @@ h2 {
 }
 
 .tarjeta-cred .estatico p{
-
+  letter-spacing: 0.5px;
 }
 
 .tarjeta-cred .dinamico p{
@@ -220,6 +220,10 @@ h2 {
   margin: 0;
 }
 
+.f_size_bullet_points {
+  font-size: 28px !important;
+  line-height: 0px; 
+}
 /*----------------------------------------*/
 
 /*TABLA*/
