@@ -18,11 +18,11 @@ def check_device_connection(ip_address):
         result = subprocess.run(['ping','-c', '1','-W','1', ip_address],stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
         
         if "0% packet loss" in result.stdout:
-            return f"ACTIVO"
+            return f"Conectado"
         else:
-            return f"NO DISPONIBLE"
+            return f"Desconectado"
     except subprocess.CalledProcessError:
-        return f"NO DISPONIBLE"
+        return f"Desconectado"
 
 
 #ejecutar script/comando
@@ -81,7 +81,7 @@ def datos_status_tabla1():
 
 #obtener datos tabla 3 raspberry server
 def datos_status_tabla3():
-    temp = int(ejecutar_script('cat /sys/class/thermal/thermal_zone0/temp'))/1000
+    temp = int(float(ejecutar_script('cat /sys/class/thermal/thermal_zone0/temp'))/1000)
     rsp_temp = f'{temp} ºC'
 
     status_json = {

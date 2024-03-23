@@ -74,6 +74,7 @@ input[value="Registrarse"] {
   margin: 15px;
   border-radius: 10px;
   font-family: inherit;
+  letter-spacing: 1.5px;
 }
 
 input[value="Iniciar Sesión"]:hover,
