@@ -304,7 +304,7 @@ def gc_cargar_credenciales():
     user_id_session = current_user.id
     
     #obtenemos las credenciales
-    user_credentials = db.session.query(Credentials).join(User).filter(Credentials.user_id == user_id_session).all()
+    user_credentials = db.session.query(Credentials).join(User).filter(Credentials.user_id == user_id_session).order_by(Credentials.site).all()
     
     #las pasamos a diccionarios
     user_credentials_dc = [
