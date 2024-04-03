@@ -36,13 +36,12 @@ def ejecutar_script(comando):
 
 #Encender PC a traves de petición a ESP
 def pc_on_esp32():
-    
     #Obtenemos la ip local y comprobamos el 3 octeto para verificar que red estamos
     ip_local = get_local_ip()
     octeto_3 = int(ip_local.split('.')[2]) #la 'ip_esp' ya esta definida al principio con f string para añadir el valor de 'octeto_3'
     ip_esp = f'192.168.{octeto_3}.100'
 
-    url_web_esp = f'http://{ip_esp}/control?secret_class={ESP32.ON_KEY}&on=ON'
+    url_web_esp_on = f'http://{ip_esp}/control?secret_class={ESP32.ON_KEY}&on=ON'
 
     #comprobamos el estado del pc y procedemos según éste
     current_status = pc_status()
@@ -50,7 +49,29 @@ def pc_on_esp32():
     if current_status == 'ACTIVO':
         return 'El PC ya está encendido'
     else:
-        return peticion_get(url_web_esp)
+        return peticion_get(url_web_esp_on)
+
+
+def temperature_and_humidity_dht22():
+    ip_local = get_local_ip()
+    octeto_3 = int(ip_local.split('.')[2])
+    ip_esp = f'192.168.{octeto_3}.100'
+
+    url_web_esp_th = f'http://{ip_esp}/getTempAndHumd'
+    
+    response = requests.get(url_web_esp_th)
+    data = response.json()
+
+    temp = f'{round(float(data["temperature"]), 1)} ºC'
+    humd = f'{round(float(data["humidity"]), 1)} %'
+
+    status_json = {
+        'temperature':{'status-data': temp},
+        'humidity':{'status-data': humd},
+    }
+
+    return status_json
+
 
 
 #pc status 
@@ -64,6 +85,37 @@ def pc_status():
 
     return check_device_connection(ip_pc)
 
+
+def get_cpu_usage():
+    # Ejecutar el comando 'sar -u' y capturar la salida
+    resultado = subprocess.run(['sar', '-u', '1', '1'], capture_output=True, text=True)
+
+    # Obtener las líneas de salida
+    lineas = resultado.stdout.split('\n')
+
+    # Inicializar una lista para almacenar los porcentajes de uso de CPU
+    porcentajes_cpu = []
+
+    # Recorrer las líneas y extraer los porcentajes de uso de CPU
+    for linea in lineas:
+        # Dividir la línea en columnas
+        columnas = linea.split()
+        # Verificar si hay columnas y si la primera columna es 'all'
+        if len(columnas) > 0 and columnas[1] == 'all':
+
+            for columna in columnas[2:7]:
+                # Obtener el porcentaje de uso de CPU y convertirlo a flotante
+                porcentaje_cpu = float(columna)
+                # Agregar el porcentaje a la lista
+                porcentajes_cpu.append(porcentaje_cpu)
+
+    # Sumar los porcentajes de uso de CPU
+    total_cpu_usage = sum(porcentajes_cpu)
+
+    # Imprimir el uso total de CPU
+    return total_cpu_usage
+
+
 #obtener_datos_json_tablas
 def datos_status_tabla1():
     status_miquel = check_status.miquel()
@@ -71,9 +123,9 @@ def datos_status_tabla1():
     status_iphone = check_status.iphone()
 
     status_json = {
-        'miquel': {'data-id': 1, 'columnaSTATUS': status_miquel},
-        'noe': {'data-id': 2, 'columnaSTATUS': status_noe},
-        'iphone': {'data-id': 3, 'columnaSTATUS': status_iphone},
+        'miquel': {'columnaSTATUS': status_miquel},
+        'noe': {'columnaSTATUS': status_noe},
+        'iphone': {'columnaSTATUS': status_iphone},
     }
 
     return status_json
@@ -84,19 +136,23 @@ def datos_status_tabla3():
     temp = int(float(ejecutar_script('cat /sys/class/thermal/thermal_zone0/temp'))/1000)
     rsp_temp = f'{temp} ºC'
 
+    cpu = round(float(get_cpu_usage()), 1)
+    cpu_usage = f'{cpu} %'
+
     status_json = {
-        'temp': {'data-id': 1, 'status-data': rsp_temp},
+        'temp': {'status-data': rsp_temp},
+        'cpu-usage':{'status-data': cpu_usage},
     }
 
     return status_json
 
 
 def datos_status_tabla4():
-    pc_stats = pc_status()
+    pc_status_ = pc_status()
     #send_notis.send_noti(pc_stats, 'default')
 
     status_json = {
-        'pc-status': {'data-id': 1, 'status-data': pc_stats},
+        'pc-status': {'status-data': pc_status_},
     }
     
     return status_json

@@ -410,6 +410,11 @@ def reload_status_t4():
     return jsonify(funciones.datos_status_tabla4())
 
 
+@app.route('/temp_humd_json', methods=['GET'])
+def temp_humd_dht22():
+   return jsonify(funciones.temperature_and_humidity_dht22()) 
+
+
 #------------------------------------------------------------------------------
 
 # Manejador de errores para errores internos (código de estado 500)
