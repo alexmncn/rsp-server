@@ -13,9 +13,11 @@ import os
 import time
 from datetime import datetime
 import logging
+import threading
 
 #importamos funciones
 import funciones, send_notis, ip_nmap_scan
+from funciones import save_sensor_data_csv
 
 #importamos configuracion
 from config import Config, SQL_Alchemy, S_Routes
@@ -410,10 +412,10 @@ def reload_status_t4():
     return jsonify(funciones.datos_status_tabla4())
 
 
+## DATOS SENSORES ------------------------------------------------
 @app.route('/temp_humd_json', methods=['GET'])
 def temp_humd_dht22():
-   return jsonify(funciones.temperature_and_humidity_dht22()) 
-
+   return jsonify(funciones.temperature_and_humidity_dht22())
 
 #------------------------------------------------------------------------------
 
@@ -438,7 +440,13 @@ def internal_server_error(error):
     
     return redirect(url_for('home'))
 
-
+# Ejecuta antes de que llegue la primera request
+@app.before_first_request
+def inicio():
+    #Ejecuta la funcion para guardar los datos del sensor en un hilo independiente
+    thread = threading.Thread(target=save_sensor_data_csv)
+    thread.daemon = True
+    thread.start()
 ################################################################
 #
 #
