@@ -417,6 +417,26 @@ def reload_status_t4():
 def reload_status_t5():
    return jsonify(funciones.datos_status_tabla5())
 
+
+@app.route('/control_save_sensor_data_status', methods=['GET'])
+def control_save_sensor_data_status():
+    if funciones.guardar_datos_sensor == True:
+        return 'true'
+    else:
+        return 'false'
+
+
+@app.route('/control_save_sensor_data_change_status', methods=['GET'])
+@user_has_role('admin')
+def control_save_sensor_data_change_status():
+    if funciones.guardar_datos_sensor == True:
+        funciones.guardar_datos_sensor = False
+        return 'false'
+    elif funciones.guardar_datos_sensor == False:
+        funciones.guardar_datos_sensor = True
+        inicio()
+        return 'true'
+
 #------------------------------------------------------------------------------
 
 # Manejador de errores para errores internos (código de estado 500)
