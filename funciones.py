@@ -54,6 +54,7 @@ def pc_on_esp32():
     else:
         return peticion_get(url_web_esp_on)
 
+
 # Obtiene y devuelve la temperatura y la humedad obtenida del sensor conectado al esp32
 def temperature_and_humidity_dht22():
     ip_local = get_local_ip()
@@ -68,12 +69,7 @@ def temperature_and_humidity_dht22():
     temp = round(float(data["temperature"]), 1)
     humd = round(float(data["humidity"]), 1)
 
-    status_json = {
-        'temperature':{'status-data': temp},
-        'humidity':{'status-data': humd},
-    }
-
-    return status_json
+    return temp, humd
 
 
 #Llama a la funcion que devuelve los datos del sensor y los guarda cada 30 segundos en un .csv
@@ -81,17 +77,15 @@ def save_sensor_data_csv():
     time_delay = 30
     send_notis.send_noti(f'Se ha empezado a guardar datos del sensor. Cada {time_delay} seg.', 'default')
     while guardar_datos_sensor:
-        datos_sensor = temperature_and_humidity_dht22()
+        temperature, humidity = temperature_and_humidity_dht22()
 
-        temperatura = datos_sensor['temperature']['status-data']
-        humedad = datos_sensor['humidity']['status-data']
         fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
         # Guardar los datos en el archivo CSV
         with open('/var/www/html/logs/sensor_data.csv', 'a', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow([fecha, temperatura, humedad])
-        
+            writer.writerow([fecha, temperature, humidity])
+       
         # Esperar durante 30 segundos antes de la próxima ejecución
         time.sleep(time_delay)
 
@@ -142,6 +136,26 @@ def get_cpu_usage():
     return total_cpu_usage
 
 
+def get_ram_usage():
+
+    # Ejecutar el comando 'free -m' y capturar la salida
+    resultado = subprocess.run(['free', '-m'], capture_output=True, text=True)
+
+    # Obtener las líneas de salida
+    lineas = resultado.stdout.split('\n')
+
+    # Recorrer las líneas y extraer los porcentajes de uso de CPU
+    for linea in lineas:
+        # Dividir la línea en columnas
+        columnas = linea.split()
+        # Verificar si hay columnas y si la primera columna es 'Mem:'
+        if len(columnas) > 0 and columnas[0] == 'Mem:':
+            ram_usage = int(columnas[1]) - int(columnas[6])
+
+    return ram_usage
+
+
+
 #obtener_datos_json_tablas
 def datos_status_tabla1():
     status_miquel = check_status.miquel()
@@ -162,12 +176,17 @@ def datos_status_tabla3():
     temp = int(float(ejecutar_script('cat /sys/class/thermal/thermal_zone0/temp'))/1000)
     rsp_temp = f'{temp} ºC'
 
-    cpu = round(float(get_cpu_usage()), )
+    cpu = round(float(get_cpu_usage()), 1)
     cpu_usage = f'{cpu} %'
+
+    ram = get_ram_usage()
+    ram_usage = f'{ram} MB'
+
 
     status_json = {
         'temp': {'status-data': rsp_temp},
         'cpu-usage':{'status-data': cpu_usage},
+        'ram-usage':{'status-data': ram_usage},
     }
 
     return status_json
@@ -179,6 +198,20 @@ def datos_status_tabla4():
 
     status_json = {
         'pc-status': {'status-data': pc_status_},
+    }
+    
+    return status_json
+
+
+def datos_status_tabla5():
+    temp, humd = temperature_and_humidity_dht22()
+
+    temp = f'{temp} ºC'
+    humd = f'{humd} %'
+
+    status_json = {
+        'temperature':{'status-data': temp},
+        'humidity':{'status-data': humd},
     }
     
     return status_json

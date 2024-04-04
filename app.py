@@ -414,8 +414,8 @@ def reload_status_t4():
 
 ## DATOS SENSORES ------------------------------------------------
 @app.route('/temp_humd_json', methods=['GET'])
-def temp_humd_dht22():
-   return jsonify(funciones.temperature_and_humidity_dht22())
+def reload_status_t5():
+   return jsonify(funciones.datos_status_tabla5())
 
 #------------------------------------------------------------------------------
 
