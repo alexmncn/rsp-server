@@ -110,8 +110,8 @@ h2 {
 
 h3 {
   margin-left: 12.5%;
-  color: #101019;
   font-weight: bold;
+  margin-top: 0px;
 }
 
 @media(max-width: 600px) {
@@ -139,16 +139,18 @@ td.status-data {
 
 .table3,
 .table4,
-.table5 {
+.table5_1 {
   flex: 1 1 400px;
   flex-direction: column;
   width: 100%;
+  margin-top: 20px;
 }
 
 .table5,
 .table6 {
   width: 100%;
   text-align: left;
+  margin-top: 20px;
 }
 
 /*TABLAS*/
@@ -181,11 +183,17 @@ table, th, td {
 }
 
 /* Interruptor */
+.titulo-interruptor {
+  display: flex;
+  align-items: center;
+}
+
 .interruptor_save_data {
   background-color: rgba(255, 255, 255, 0.5);
-  padding: 5px;
+  padding: 2.8px;
   border-radius: 20px;
-  width: 50px;
+  width: 45px;
+  margin-left: 20px;
 }
 
 .interruptor_save_data svg {
@@ -193,18 +201,23 @@ table, th, td {
 }
 
 .interruptor_save_data circle {
-  cx: 10;
-  cy: 10;
-  r: 10;
+  cx: 7;
+  cy: 7;
+  r: 7;
   fill: rgb(231, 76, 60);
 }
 
-.interruptor-desactivado {
-
-}
 
 .interruptor-desactivado svg {
-  animation: moveCircleLeft 0.5s ease-out forwards;
+  animation: moveCircleLeft 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+.interruptor-desactivado #fondo-interruptor {
+  height: 14px;
+  background-color: rgba(1, 1, 1, 0.1);
+  border-radius: 20px;
+
+  animation: fondoLeft 0.2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 .interruptor-activado circle {
@@ -212,7 +225,15 @@ table, th, td {
 }
 
 .interruptor-activado svg {
-  animation: moveCircleRight 0.5s ease-out forwards;
+  animation: moveCircleRight 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+.interruptor-activado #fondo-interruptor {
+  height: 14px;
+  background-color: rgba(1, 1, 1, 0.1);
+  border-radius: 20px;
+
+  animation: fondoRight 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 @keyframes moveCircleLeft {
@@ -233,6 +254,23 @@ table, th, td {
   }
 }
 
+@keyframes fondoRight {
+  0%{
+    width: 14px;
+  }
+  100%{
+    width: 43px;
+  }
+}
+
+@keyframes fondoLeft {
+  0%{
+    width: 43px;
+  }
+  100%{
+    width: 14px;
+  }
+}
 
 /*---- errores ----*/
 .error {
