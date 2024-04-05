@@ -92,12 +92,15 @@ h1 {
 /*Contenido de la pagina, margen para evitar el header*/
 main {
   margin-top: 96px; /* Ajusta según la altura de tu encabezado */
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .container {
+  flex: 1 1 400px;
   display: flex;
   flex-direction: column; /* Coloca los elementos en una columna vertical */
-  justify-content: center; /* Centra verticalmente los elementos */
+  /*justify-content: center; /* Centra verticalmente los elementos */
   align-items: center; /* Centra horizontalmente los elementos */  
   margin-top: 50px;
   text-align: center;
