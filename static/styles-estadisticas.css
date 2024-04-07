@@ -115,6 +115,7 @@ h3 {
   margin-left: 12.5%;
   font-weight: bold;
   margin-top: 0px;
+  color: #ffffffba;
 }
 
 @media(max-width: 600px) {
@@ -193,7 +194,7 @@ table, th, td {
 
 .interruptor_save_data {
   background-color: rgba(255, 255, 255, 0.5);
-  padding: 2.8px;
+  padding: 3.3px;
   border-radius: 20px;
   width: 45px;
   margin-left: 20px;

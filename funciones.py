@@ -74,20 +74,23 @@ def temperature_and_humidity_dht22():
 
 #Llama a la funcion que devuelve los datos del sensor y los guarda cada 30 segundos en un .csv
 def save_sensor_data_csv():
-    time_delay = 30
+    time_delay = 60
     send_notis.send_noti(f'Se ha empezado a guardar datos del sensor. Cada {time_delay} seg.', 'default')
     while guardar_datos_sensor:
-        temperature, humidity = temperature_and_humidity_dht22()
+        try:
+            temperature, humidity = temperature_and_humidity_dht22()
 
-        fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
-        # Guardar los datos en el archivo CSV
-        with open('/var/www/html/logs/sensor_data.csv', 'a', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow([fecha, temperature, humidity])
+            # Guardar los datos en el archivo CSV
+            with open('/var/www/html/logs/sensor_data.csv', 'a', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow([fecha, temperature, humidity])
        
-        # Esperar durante 30 segundos antes de la próxima ejecución
-        time.sleep(time_delay)
+            # Esperar durante 30 segundos antes de la próxima ejecución
+            time.sleep(time_delay)
+        except:
+            send_notis.send_noti('Error al guardar datos.', 'default')
 
     send_notis.send_noti('Se ha parado el guardado de datos del sensor.', 'default')
 
