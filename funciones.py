@@ -7,7 +7,7 @@ from sqlalchemy import desc, func
 import json
 from datetime import datetime, timedelta
 from PIL import Image, ImageDraw, ImageFont
-from config import ESP32
+from config import ESP32, ThinkSpeak
 import csv, time
 
 ip_pc_piso = '192.168.1.53' #IP piso
@@ -49,7 +49,7 @@ def pc_on_esp32():
     #comprobamos el estado del pc y procedemos según éste
     current_status = pc_status()
 
-    if current_status == 'ACTIVO':
+    if current_status == 'Conectado':
         return 'El PC ya está encendido'
     else:
         return peticion_get(url_web_esp_on)
@@ -72,7 +72,7 @@ def temperature_and_humidity_dht22():
     return temp, humd
 
 
-#Llama a la funcion que devuelve los datos del sensor y los guarda cada 30 segundos en un .csv
+# Llama a la funcion que devuelve los datos del sensor y los guarda cada 30 segundos en un .csv
 def save_sensor_data_csv():
     time_delay = 60
     send_notis.send_noti(f'Se ha empezado a guardar datos del sensor. Cada {time_delay} seg.', 'default')
@@ -86,17 +86,39 @@ def save_sensor_data_csv():
             with open('/var/www/html/logs/sensor_data.csv', 'a', newline='') as file:
                 writer = csv.writer(file)
                 writer.writerow([fecha, temperature, humidity])
-       
-            # Esperar durante 30 segundos antes de la próxima ejecución
-            time.sleep(time_delay)
+
         except:
             send_notis.send_noti('Error al guardar datos.', 'default')
+
+        # Pausa establecida por el time_delay entre insercciones
+        time.sleep(time_delay)
 
     send_notis.send_noti('Se ha parado el guardado de datos del sensor.', 'default')
 
 
+# Enviamos datos del sensor a la web ThinkSpeak
+def send_sensor_data_thinkspeak():
+    time_delay = 60
+    send_notis.send_noti(f'Se ha empezado a enviar datos del sensor a ThinkSpeak.', 'default')
 
-#pc status 
+    while guardar_datos_sensor:
+        try:
+            temperature, humidity = temperature_and_humidity_dht22()
+            
+            url_thinkspeak_s1 = f'https://api.thingspeak.com/update?api_key={ThinkSpeak.API_KEY}&field1={temperature}&field2={humidity}'
+
+            response = requests.get(url_thinkspeak_s1)
+
+        except:
+            send_notis.send_noti('Error al enviar datos a ThinkSpeak.', 'default')
+
+        # Pausa establecida por el time_delay entre cada envio
+        time.sleep(time_delay)
+    
+    send_notis.send_noti('Se ha parado de enviar datos al sensor.')
+
+
+# Comprueba el estado del pc 
 def pc_status():
     ip_local = get_local_ip()
     octeto_3 = int(ip_local.split('.')[2])

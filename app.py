@@ -17,7 +17,7 @@ import threading
 
 #importamos funciones
 import funciones, send_notis, ip_nmap_scan
-from funciones import save_sensor_data_csv
+from funciones import save_sensor_data_csv, send_sensor_data_thinkspeak
 
 #importamos configuracion
 from config import Config, SQL_Alchemy, S_Routes
@@ -464,7 +464,7 @@ def internal_server_error(error):
 @app.before_first_request
 def inicio():
     #Ejecuta la funcion para guardar los datos del sensor en un hilo independiente
-    thread = threading.Thread(target=save_sensor_data_csv)
+    thread = threading.Thread(target=send_sensor_data_thinkspeak)
     thread.daemon = True
     thread.start()
 ################################################################
