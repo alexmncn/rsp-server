@@ -276,6 +276,70 @@ table, th, td {
   }
 }
 
+#switch-graficas {
+  display: flex;
+  justify-content: center;
+}
+
+button.boton-graficas {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  padding: 3px;
+  width: 50px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: width 0.5s cubic-bezier(0, 0, 0.41, 1);
+}
+
+button.boton-graficas:hover {
+  width: 150px;
+}
+
+#graficas-temp-humd {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#graficas-temp-humd .panel {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 20px 50px;
+  padding: 10px 0px;
+  border-radius: 15px;
+  min-width: 425px;
+}
+
+.graficas {
+  transform: scale(0.9);
+  height: 230px;
+  width: 425px;
+  width: -webkit-fill-available;
+  border: none;
+  border-radius: 10px;
+}
+
+#@media(max-width: 600px){
+  .graficas{
+    transform: scale(0.85);
+  }
+
+  #graficas-temp-humd.contenido{
+    margin: 20px 10px;
+    padding: 0px;
+  }
+
+}
+
+.ocultar {
+  display: none !important;
+}
+
 /*---- errores ----*/
 .error {
   margin-top: 20px;

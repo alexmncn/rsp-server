@@ -26,3 +26,14 @@ actualizarTabla5();
 // Llamar a la función para actualizar la tabla cada 5000 milisegundos (5 segundos)
 setInterval(actualizarTabla5, 5000);
 });
+
+function switch_graficas(event) {
+  event.preventDefault();
+  var graficas = document.getElementById("graficas-temp-humd");
+
+  if (graficas.classList.contains("ocultar")) {
+    graficas.classList.remove("ocultar");
+  } else {
+    graficas.classList.add("ocultar");
+  }
+}
