@@ -72,6 +72,8 @@ def temperature_and_humidity_dht22():
     
     code, response = peticion_get(url_web_esp_th)
     
+    e = None
+
     if code == 200:
         data = response.json()
 
@@ -88,9 +90,9 @@ def temperature_and_humidity_dht22():
         else:
             temp = None
             humd = None
-            error = response2
+            e = response2
 
-    return temp, humd, error
+    return temp, humd, e
 
 
 # Llama a la funcion que devuelve los datos del sensor y los guarda cada 30 segundos en un .csv
@@ -99,7 +101,7 @@ def save_sensor_data_csv():
     send_notis.send_noti(f'Se ha empezado a guardar datos del sensor. Cada {time_delay} seg.', 'default')
     while guardar_datos_sensor:
         try:
-            temperature, humidity = temperature_and_humidity_dht22()
+            temperature, humidity, e = temperature_and_humidity_dht22()
 
             fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
@@ -123,14 +125,14 @@ def send_sensor_data_thinkspeak():
 
     while guardar_datos_sensor:
         try:
-            temperature, humidity = temperature_and_humidity_dht22()
+            temperature, humidity, e = temperature_and_humidity_dht22()
             if temperature != None:
                 url_thinkspeak_s1 = f'https://api.thingspeak.com/update?api_key={ThinkSpeak.API_KEY}&field1={temperature}&field2={humidity}'
                 response = requests.get(url_thinkspeak_s1)
             else:
                 send_notis.send_noti('No se han enviado datos a ThinkSpeak. Datos Nulos', 'default')
         except Exception as e:
-            send_notis.send_noti(f'Error al enviar datos a ThinkSpeak. {e}', 'default')
+            send_notis.send_noti(f'Error al enviar datos a ThinkSpeak. {e}. {error}', 'default')
 
         # Pausa establecida por el time_delay entre cada envio
         time.sleep(time_delay)
@@ -249,7 +251,7 @@ def datos_status_tabla4():
 
 
 def datos_status_tabla5():
-    temp, humd = temperature_and_humidity_dht22()
+    temp, humd, e= temperature_and_humidity_dht22()
 
     temp = f'{temp} ºC'
     humd = f'{humd} %'
