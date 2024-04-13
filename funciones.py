@@ -52,7 +52,14 @@ def pc_on_esp32():
     if current_status == 'Conectado':
         return 'El PC ya está encendido'
     else:
-        return peticion_get(url_web_esp_on)
+        code, response = peticion_get(url_web_esp_on)
+
+        if code == 200:
+            return 'PC encendido corectamente'
+        elif code == None:
+            return response
+        else:
+            return f'No se ha podido encender el PC. {response}: {code}'
 
 
 # Obtiene y devuelve la temperatura y la humedad obtenida del sensor conectado al esp32
@@ -63,13 +70,27 @@ def temperature_and_humidity_dht22():
 
     url_web_esp_th = f'http://{ip_esp}/getTempAndHumd'
     
-    response = requests.get(url_web_esp_th)
-    data = response.json()
+    code, response = peticion_get(url_web_esp_th)
+    
+    if code == 200:
+        data = response.json()
 
-    temp = round(float(data["temperature"]), 1)
-    humd = round(float(data["humidity"]), 1)
+        temp = round(float(data["temperature"]), 1)
+        humd = round(float(data["humidity"]), 1)
+    else:
+        code2, response2 = peticion_get(url_web_esp_th)
+        
+        if code2 == 200:
+            data = response2.json()
 
-    return temp, humd
+            temp = round(float(data["temperature"]), 1)
+            humd = round(float(data["humidity"]), 1)
+        else:
+            temp = None
+            humd = None
+            error = response2
+
+    return temp, humd, error
 
 
 # Llama a la funcion que devuelve los datos del sensor y los guarda cada 30 segundos en un .csv
@@ -86,7 +107,6 @@ def save_sensor_data_csv():
             with open('/var/www/html/logs/sensor_data.csv', 'a', newline='') as file:
                 writer = csv.writer(file)
                 writer.writerow([fecha, temperature, humidity])
-
         except:
             send_notis.send_noti('Error al guardar datos.', 'default')
 
@@ -104,13 +124,13 @@ def send_sensor_data_thinkspeak():
     while guardar_datos_sensor:
         try:
             temperature, humidity = temperature_and_humidity_dht22()
-            
-            url_thinkspeak_s1 = f'https://api.thingspeak.com/update?api_key={ThinkSpeak.API_KEY}&field1={temperature}&field2={humidity}'
-
-            response = requests.get(url_thinkspeak_s1)
-
-        except:
-            send_notis.send_noti('Error al enviar datos a ThinkSpeak.', 'default')
+            if temperature != None:
+                url_thinkspeak_s1 = f'https://api.thingspeak.com/update?api_key={ThinkSpeak.API_KEY}&field1={temperature}&field2={humidity}'
+                response = requests.get(url_thinkspeak_s1)
+            else:
+                send_notis.send_noti('No se han enviado datos a ThinkSpeak. Datos Nulos', 'default')
+        except Exception as e:
+            send_notis.send_noti(f'Error al enviar datos a ThinkSpeak. {e}', 'default')
 
         # Pausa establecida por el time_delay entre cada envio
         time.sleep(time_delay)
@@ -386,11 +406,11 @@ def peticion_get(url):
             
         #comprobnamos el codigo de estado de la solicitud
         if response.status_code == 200:
-            return 'Petición aceptada'
+            return response.status_code, response
         else:
-            return 'Error'
+            return response.status_code, f'Error en la solicitud: {response.status_code}'
     except Exception as e:
-        return None
+        return None, f'Error en la solicitud: {e}'
 
 
 # Obtiene la ip de conexión
