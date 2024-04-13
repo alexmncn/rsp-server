@@ -121,13 +121,13 @@
         </table>
 
         <div id="switch-graficas">
-          <button class="boton-graficas" onclick="switch_graficas(event)"></button>
+          <button id="g-boton" class="boton-graficas" onclick="switch_graficas(event)"></button>
         </div>
 
         <div id="graficas-temp-humd" class="ocultar">
           <div class="panel">
           <iframe id="g-temp" class="graficas" style="" src="https://thingspeak.com/channels/2504602/charts/1?bgcolor=%23101019&color=%23ffffff&dynamic=true&results=1440&timescale=30&title=Temperatura&type=spline&xaxis=Tiempo&yaxis=Grados+%28%C2%BAC%29"></iframe>
-          <iframe id="g-humd" class="graficas" style="" src="https://thingspeak.com/channels/2504602/charts/2?color=%23101019&dynamic=true&results=1440&timescale=30&title=Humedad&type=line&xaxis=Tiempo&yaxis=%25+Relativa"></iframe>
+          <iframe id="g-humd" class="graficas" style="" src="https://thingspeak.com/channels/2504602/charts/2?bgcolor=%23101019&color=%23ffffff&dynamic=true&results=1440&timescale=30&title=Humedad&type=line&xaxis=Tiempo&yaxis=%25+Relativa"></iframe>
           </div>
         
         </div>

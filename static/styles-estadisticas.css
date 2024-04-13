@@ -295,6 +295,10 @@ button.boton-graficas:hover {
   width: 150px;
 }
 
+.ancho_fijo {
+  width: 150px !important;
+}
+
 #graficas-temp-humd {
   width: 100%;
   display: flex;

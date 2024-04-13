@@ -30,10 +30,13 @@ setInterval(actualizarTabla5, 5000);
 function switch_graficas(event) {
   event.preventDefault();
   var graficas = document.getElementById("graficas-temp-humd");
+  var g_boton = document.getElementById("g-boton");
 
   if (graficas.classList.contains("ocultar")) {
     graficas.classList.remove("ocultar");
+    g_boton.classList.add("ancho_fijo");
   } else {
     graficas.classList.add("ocultar");
+    g_boton.classList.remove("ancho_fijo");
   }
 }
