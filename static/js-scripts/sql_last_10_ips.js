@@ -17,7 +17,7 @@ $(document).ready(function() {
                             `<tr>
                                 <td>${query.id}</td>
                                 <td>${query.remote_host}</td>
-                                <td>${query.fecha}</td>
+                                <td>${query.date}</td>
                             </tr>`
                         );
                     });

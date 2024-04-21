@@ -36,7 +36,7 @@ access_log_table = Table('access_log', metadata,
     Column('status', Integer),
     Column('time_stamp', Integer),
     Column('virtual_host', String(255)),
-    Column('fecha', String(255))
+    Column('date', String(255))
 )
 
 def query(selects=None, columns=None, filters=None, group_by=None , order_by=None, limit=None):

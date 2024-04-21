@@ -268,7 +268,7 @@ def last_access_log_query(limit, ip_filter=None):
     #parametros query
     selects = None
     
-    columns = ['id', 'remote_host', 'fecha']
+    columns = ['id', 'remote_host', 'date']
     
     if ip_filter:
         filter = access_log_table.columns.remote_host != f'{ip_filter}'
@@ -289,9 +289,9 @@ def most_accesses_by_ip_query(limit):
     time_threshold = datetime.utcnow() - timedelta(hours=24)
 
     #parametros query
-    selects = [access_log_table.c.remote_host,func.count().label('count'),func.max(access_log_table.c.fecha).label('last_access')]
+    selects = [access_log_table.c.remote_host,func.count().label('count'),func.max(access_log_table.c.date).label('last_access')]
     columns = None
-    filters = access_log_table.c.fecha >= time_threshold
+    filters = access_log_table.c.date >= time_threshold
     group = access_log_table.c.remote_host
     order = func.count().desc()
     

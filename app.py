@@ -413,6 +413,7 @@ def reload_status_t4():
 
 
 ## DATOS SENSORES ------------------------------------------------
+
 @app.route('/temp_humd_json', methods=['GET'])
 def reload_status_t5():
    return jsonify(funciones.datos_status_tabla5())
@@ -437,6 +438,15 @@ def control_save_sensor_data_change_status():
         inicio()
         return 'true'
 
+
+# Tabla de datos de los sensores
+class SensorData(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    sensor_name = db.Column(db.String(50))
+    temperature = db.Column(db.Float)
+    humidity = db.Column(db.Float)
+    date = db.Column(db.DateTime, default=datetime.now)
+
 #------------------------------------------------------------------------------
 
 # Manejador de errores para errores internos (código de estado 500)
@@ -459,6 +469,7 @@ def internal_server_error(error):
     send_notis.send_noti(message, 'default')
     
     return redirect(url_for('home'))
+
 
 # Ejecuta antes de que llegue la primera request
 @app.before_first_request
