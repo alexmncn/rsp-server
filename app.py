@@ -475,9 +475,9 @@ def internal_server_error(error):
 @app.before_first_request
 def inicio():
     #Ejecuta la funcion para guardar los datos del sensor en un hilo independiente
-    thread = threading.Thread(target=send_sensor_data_thinkspeak)
-    thread.daemon = True
-    thread.start()
+    #thread = threading.Thread(target=send_sensor_data_thinkspeak)
+    #thread.daemon = True
+#thread.start()
 ################################################################
 #
 #

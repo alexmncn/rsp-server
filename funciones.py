@@ -95,7 +95,7 @@ def temperature_and_humidity_dht22():
     return temp, humd, e
 
 
-# Llama a la funcion que devuelve los datos del sensor y los guarda cada 30 segundos en un .csv
+# Llama a la funcion que devuelve los datos del sensor y los guarda cada 30 segundos en un .csv || NO USADA
 def save_sensor_data_csv():
     time_delay = 60
     send_notis.send_noti(f'Se ha empezado a guardar datos del sensor. Cada {time_delay} seg.', 'default')
@@ -118,7 +118,7 @@ def save_sensor_data_csv():
     send_notis.send_noti('Se ha parado el guardado de datos del sensor.', 'default')
 
 
-# Enviamos datos del sensor a la web ThinkSpeak
+# Enviamos datos del sensor a la web ThinkSpeak || NO USADA
 def send_sensor_data_thinkspeak():
     time_delay = 60
     send_notis.send_noti(f'Se ha empezado a enviar datos del sensor a ThinkSpeak.', 'default')

@@ -60,8 +60,8 @@ def start_mqtt_subscription():
     mqtt_client.on_message = on_message
     mqtt_client.connect(MQTT_HOST, MQTT_PORT, MQTT_KEEP_ALIVE)
     # Suscribirse al tema
-    topic = "test/topic"
-    mqtt_client.subscribe(topic, qos=2)  # QoS 2 para garantizar la entrega exactamente una vez
+    TOPIC = MQTT_Service.TOPIC
+    mqtt_client.subscribe(TOPIC, qos=2)  # QoS 2 para garantizar la entrega exactamente una vez
 
     # Iniciar la recepción de mensajes
     mqtt_client.loop_forever()
