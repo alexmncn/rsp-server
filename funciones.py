@@ -95,6 +95,13 @@ def temperature_and_humidity_dht22():
     return temp, humd, e
 
 
+def sensor_data_db():
+    s_data = SensorData.query.filter_by(sensor_name='sensor1').first()
+    print('Error de db')
+
+    return s_data.sensor_name, s_data.temperature, s_data.humidity, s_data.date, s_data.battery_level
+
+
 # Llama a la funcion que devuelve los datos del sensor y los guarda cada 30 segundos en un .csv || NO USADA
 def save_sensor_data_csv():
     time_delay = 60
@@ -251,14 +258,17 @@ def datos_status_tabla4():
 
 
 def datos_status_tabla5():
-    temp, humd, e= temperature_and_humidity_dht22()
+    s_name, temp, humd, date, battery = sensor_data_db()
 
     temp = f'{temp} ºC'
     humd = f'{humd} %'
 
     status_json = {
+        'sensor_name':{'status-data': s_name},
         'temperature':{'status-data': temp},
         'humidity':{'status-data': humd},
+        'date':{'status-data': date},
+        'battery':{'status-data': battery}
     }
     
     return status_json

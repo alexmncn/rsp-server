@@ -441,11 +441,12 @@ def control_save_sensor_data_change_status():
 
 # Tabla de datos de los sensores
 class SensorData(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True,)
     sensor_name = db.Column(db.String(50))
     temperature = db.Column(db.Float)
     humidity = db.Column(db.Float)
-    date = db.Column(db.DateTime, default=datetime.now)
+    date = db.Column(db.DateTime, unique=True, default=datetime.now)
+    battery_level = db.Column(db.Float)
 
 #------------------------------------------------------------------------------
 
@@ -472,12 +473,13 @@ def internal_server_error(error):
 
 
 # Ejecuta antes de que llegue la primera request
-@app.before_first_request
-def inicio():
+#@app.before_first_request
+#def inicio():
     #Ejecuta la funcion para guardar los datos del sensor en un hilo independiente
     #thread = threading.Thread(target=send_sensor_data_thinkspeak)
     #thread.daemon = True
-#thread.start()
+    #thread.start()
+
 ################################################################
 #
 #
